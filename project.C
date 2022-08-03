@@ -22,12 +22,15 @@ int main()
   
     while(choice==1)
     {
+    printf("-------------------Library Sytem ------------------------\n");
     printf("1 for adding student \n");
     printf("2 for printing detail of student  \n");
-    printf("3 for printing available book \n ");
+    printf("3 for printing available book \n");
     printf("4 for Borrowing the book \n");
     printf("5 for adding book \n");
     printf("6 for exit \n ");
+
+    printf("-----------------------------------------------------------");
     scanf("%d",&ch);
     switch(ch)
     {
@@ -77,7 +80,7 @@ void borrow()
     int id;
     printf("\n enter the Id of the book");
     scanf("%d",&id);
-    printf( " book is %s",name[id]);
+    printf( " You have borrowed %s",name[id]);
 
 }
 
