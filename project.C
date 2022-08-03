@@ -3,17 +3,18 @@ void student_detail();
 void print_detail();
 void print_book();
 void borrow();
+void add_book();
 
-int stud_id;
+int stud_id, counter_for_book=5;
 char stud_name[20], stud_programme[20];
-char name[5][20]={
+char name[8][20]={
                    "R D sharma",
                    "Rs agarwal",
                    "Science",
                    "Let us C",
                    "Operating"
                  };
-
+// counter_for_book=5;
 int main()
 {
     int ch;
@@ -22,10 +23,11 @@ int main()
     while(choice==1)
     {
     printf("1 for adding student \n");
-    printf(" 2 for printing detail of student  \n");
-    printf(" 3 for printing available book \n ");
-    printf(" 4 for Borrowing the book");
-    printf(" 5 for exit");
+    printf("2 for printing detail of student  \n");
+    printf("3 for printing available book \n ");
+    printf("4 for Borrowing the book \n");
+    printf("5 for adding book \n");
+    printf("6 for exit \n ");
     scanf("%d",&ch);
     switch(ch)
     {
@@ -37,7 +39,9 @@ int main()
         break;
         case 4: borrow();
         break;
-        case 5: choice=0;
+        case 5: add_book();
+        break;
+        case 6: choice=0;
     
     }
     }
@@ -64,7 +68,7 @@ void print_detail()
 void print_book()
 {
     int i;
-    for(i=0 ;i<5 ;i++)
+    for(i=0 ;i<counter_for_book ;i++)
 printf("%d  %s\n",i, name[i]);
 }
 
@@ -74,4 +78,13 @@ void borrow()
     printf("\n enter the Id of the book");
     scanf("%d",&id);
     printf( " book is %s",name[id]);
+
+}
+
+void add_book()
+{
+    
+    printf(" \n Enter the book you want to insert");
+    scanf("%s",name[counter_for_book]);
+    counter_for_book++;
 }
