@@ -25,7 +25,7 @@ void main(){
 	printf("*************** Welcome to Christ Library ***************\n\n");
     while(1){
     	printf("-------- Main Menu --------\n");
-    	printf("\n1. Student check-in\n2. Admin Login\n3. Exit Library\n\n");
+    	printf("\n1. Student Check-in\n2. Admin Login\n3. Exit Library\n\n");
     	printf("---------------------------");
 	    printf("\nSelect option: ");
 	    scanf("%d",&option);
@@ -33,14 +33,14 @@ void main(){
 	    
 	    switch(option){
 	    	case 1:
-	    		//Student Checkin code
+	    		//Student Check-in code
 	    		while(option==1){
 	    			printf("-------- Student Menu --------\n\n");
 	    			printf("1  Add Student Details \n");
 				    printf("2. Display Student Detail  \n");
 				    printf("3. Display books \n");
 				    printf("4. Borrow a book \n");
-				    printf("5. Exit \n\n");
+				    printf("5. Check-out \n\n");
 				    printf("------------------------------\n");
 				    printf("Enter choice: ");
 				    scanf("%d",&choice);
@@ -66,14 +66,14 @@ void main(){
 							system("cls"); 
 							printf("\nInvalid choice.\n\n");
 				    }
-				}
+				} //end of srudent menu
 				break;
 			case 2:
 	    		//Admin Login code
 	    		while(option==2){
 	    			printf("--------- Admin Menu ---------\n\n");
 	    			printf("1  Add Books \n");
-				    printf("2. Extra option  \n");
+				    printf("2. Display books \n");
 				    printf("3. Exit \n\n");
 				    printf("------------------------------\n");
 				    printf("Enter choice: ");
@@ -84,8 +84,7 @@ void main(){
 							add_book();
 				        	break;
 				        case 2: 
-				        	printf("New");
-							//code if needed
+				        	print_book();
 				        	break;
 				        case 3:
 							system("cls"); 
@@ -104,7 +103,7 @@ void main(){
 				break;
 			default:
 				printf("\nInvalid option.\n");
-		} //end of choice switch
+		} //end of outer switch
 	}
 }
 
@@ -128,22 +127,25 @@ void print_detail()
 
 void print_book()
 {
+	system("cls");
     int i;
     for(i=0 ;i<counter_for_book ;i++)
-	printf("%d  %s\n",i, name[i]);
+		printf("%d  %s\n",i, name[i]);
+	printf("\n\n");
 }
 
 void borrow()
 {
+	system("cls");
     int id;
-    printf("\n enter the Id of the book");
+    printf("\n Enter the Id of the book: ");
     scanf("%d",&id);
     printf( " book is %s",name[id]);
 }
 
 void add_book()
 {
-    printf(" \n Enter the book you want to insert");
+    printf(" \n Enter the book you want to insert: ");
     scanf("%s",name[counter_for_book]);
     counter_for_book++;
 }
