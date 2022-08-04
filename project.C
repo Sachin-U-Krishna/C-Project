@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<strings.h>
 
 //Functions declarations
 void student_detail();
@@ -56,10 +57,13 @@ void main(){
 				        	break;
 				        case 2:
 							system("cls"); 
+							printf("Svailable books...\n\n");
 							print_book();
 				        	break;
 				        case 3: 
-				        	system("cls"); 
+				        	system("cls");
+				        	printf("Which book do you want to borrow?\n\n");
+				        	print_book();
 							borrow();
 				        	break;
 				        case 4:
@@ -91,7 +95,8 @@ void main(){
 							add_book();
 				        	break;
 				        case 2:
-				        	system("cls"); 
+				        	system("cls");
+							printf("Svailable books...\n\n"); 
 				        	print_book();
 				        	break;
 				        case 3:
@@ -138,10 +143,9 @@ void print_detail()
 
 void print_book()
 {
-	system("cls");
     int i;
     for(i=100 ;i<(counter_for_book+100) ;i++)
-		printf("%d  %s\n",i, name[i-100]);
+		printf("\t%d  %s\n",i, name[i-100]);
 	printf("\n\n");
 }
 
@@ -149,7 +153,6 @@ void borrow()
 {
 	int flag = 0;
     int id, i;
-    //printf("The number of books in the library is %d", strlen(name));
 	printf("\nEnter the Id of the book: ");
     scanf("%d",&id);
     for(i = 100; i <= 109; i++){
@@ -160,7 +163,8 @@ void borrow()
 		printf( "You have successfully borrowed the book: %s\n\n",name[id-100]);
 	}
 	else{
-		printf("Incorrect Book ID. Please enter the correct book id\n");
+		system("cls");
+		printf("Incorrect Book ID. Please enter the correct book Id\n");
 	}
     
 }
