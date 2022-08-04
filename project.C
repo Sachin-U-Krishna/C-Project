@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<string.h>
 
 //Functions declarations
 void student_detail();
@@ -8,11 +7,12 @@ void print_detail();
 void print_book();
 void borrow();
 void add_book();
-int admin_login();
+void admin_login();
 
 //Global variables
 int stud_id, counter_for_book=5;
-char stud_name[20], stud_programme[20];
+int admin=0;
+char stud_name[20];
 int book_id[8] = {100,101,102,103,104};
 char name[8][20]={
                    "R D sharma",
@@ -23,7 +23,7 @@ char name[8][20]={
                  };
 // counter_for_book=5;
 
-int main(){
+void main(){
 	int choice,option;
 	printf("*************** Welcome to Christ Library ***************\n\n");
     while(1){
@@ -36,32 +36,33 @@ int main(){
 	    
 	    switch(option){
 	    	case 1:
+	    		student_detail();
+	    		system("cls");
 	    		//Student Check-in code
 	    		while(option==1){
 	    			printf("-------- Student Menu --------\n\n");
-	    			printf("1  Add Student Details \n");
-				    printf("2. Display Student Detail  \n");
-				    printf("3. Display books \n");
-				    printf("4. Borrow a book \n");
-				    printf("5. Check-out \n\n");
+				    printf("1. Display Student Detail  \n");
+				    printf("2. Display books \n");
+				    printf("3. Borrow a book \n");
+				    printf("4. Check-out \n\n");
 				    printf("------------------------------\n");
 				    printf("Enter choice: ");
 				    scanf("%d",&choice);
 				    switch(choice)
 				    {
 				        case 1: 
-							student_detail();
-				        	break;
-				        case 2: 
+				        	system("cls"); 
 							print_detail();
 				        	break;
-				        case 3: 
+				        case 2:
+							system("cls"); 
 							print_book();
 				        	break;
-				        case 4: 
+				        case 3: 
+				        	system("cls"); 
 							borrow();
 				        	break;
-				        case 5:
+				        case 4:
 							system("cls"); 
 							option=0;
 				        	break;
@@ -73,50 +74,41 @@ int main(){
 				break;
 			case 2:
 	    		//Admin Login code
-	    		//char admin_password[6] = "admin";
-	    		//char password[6];
-	    		//printf("Enter the password:\n");
-	    		//scanf(" %s",password);
-	    		
-	    		//result = strcmp(admin_password,password);
-	    		//if(result == 0){
+	    		admin_login();
+	    		if(admin==1){
 	    			while(option==2){
-	    				int flag = 0;
-	    				int check = admin_login();
-	    				if(check == 0){
-							system("cls");
-			    			printf("--------- Admin Menu ---------\n\n");
-			    			printf("1.  Add Books \n");
-						    printf("2. Display books \n");
-						    printf("3. Exit \n\n");
-						    printf("------------------------------\n");
-						    printf("Enter choice: ");
-						    scanf("%d",&choice);
-						    switch(choice)
-						    {
-						        case 1: 
-									add_book();
-									
-						        	break;
-						        case 2: 
-						        	print_book();
-						        	break;
-						        case 3:
-									system("cls"); 
-									option=0;
-						        	break;
-								default:
-									system("cls"); 
-									printf("\nInvalid choice.\n\n");
-							}
-						}
-						else{
-							printf("Oops! Incorrect Password.");
+	    			printf("--------- Admin Menu ---------\n\n");
+	    			printf("1  Add Books \n");
+				    printf("2. Display books \n");
+				    printf("3. Exit \n\n");
+				    printf("------------------------------\n");
+				    printf("Enter choice: ");
+				    scanf("%d",&choice);
+				    switch(choice)
+				    {
+				        case 1:
+				        	system("cls"); 
+							add_book();
+				        	break;
+				        case 2:
+				        	system("cls"); 
+				        	print_book();
+				        	break;
+				        case 3:
+				        	admin=0;
+							system("cls"); 
+							option=0;
+				        	break;
+						default:
+							system("cls"); 
+							printf("\nInvalid choice.\n\n");
 						}
 					}
-				
-	    		
-	    		
+				}
+	    		else{
+	    			system("cls"); 
+					printf("Oops! Incorrect Password.\n\n");
+				}
 				break;
 			case 3:
 				system("cls");
@@ -130,60 +122,45 @@ int main(){
 }
 
 //Function Definitions
-int admin_login(){
-	char pass[6] = "admin";
-	char password[6];
-	int result;
-	printf("Enter the password:\n");
-	scanf(" %s", password);
-	//printf(" %s", string);
-	//printf(" %s", password);
-	result = strcmp(pass,password);
-	return result;
-}
 void student_detail()
 {
     printf("Enter Student name: ");
     scanf("%s",stud_name);
     printf("\nEnter Student ID: ");
     scanf("%d",&stud_id);
-    printf("\n Enter the programme Enrolled: ");
-    scanf("%s",stud_programme);
 }
 
 void print_detail()
 {
     printf(" Name - %s \n",stud_name);
-    printf(" Id - %d \n",stud_id);
-    printf(" Programme - %s \n", stud_programme);
+    printf(" Id - %d \n\n",stud_id);
 }
 
 void print_book()
 {
 	system("cls");
     int i;
-    for(i=0 ;i<counter_for_book ;i++)
-		printf("%d  %s\n",i, name[i]);
+    for(i=100 ;i<(counter_for_book+100) ;i++)
+		printf("%d  %s\n",i, name[i-100]);
 	printf("\n\n");
 }
 
 void borrow()
 {
 	int flag = 0;
-	system("cls");
-    int id;
+    int id, i;
     //printf("The number of books in the library is %d", strlen(name));
 	printf("\nEnter the Id of the book: ");
     scanf("%d",&id);
-    for(int i = 100; i <= 109; i++){
-    	if(book_id[i-100] == i)
+    for(i = 100; i <= 109; i++){
+    	if(book_id[i-100] == id)
     		flag = 1;
 	}
-	if(flag == 0){
-		printf("Incorrect Book ID. Please enter the correct book id\n");		
+	if(flag == 1){
+		printf( "You have successfully borrowed the book: %s\n\n",name[id-100]);
 	}
 	else{
-		printf( "You have successfully borrowed the book: %s\n\n",name[id-100]);
+		printf("Incorrect Book ID. Please enter the correct book id\n");
 	}
     
 }
@@ -194,4 +171,15 @@ void add_book()
     scanf("%s",name[counter_for_book]);
     book_id[counter_for_book] = 100 + counter_for_book;
     counter_for_book++;
+}
+
+void admin_login(){
+	char pass[6] = "admin";
+	char password[6];
+	int result;
+	printf("Enter the password: ");
+	scanf(" %s", &password);
+	result = strcmp(pass,password);
+	if (result==0)
+		admin=1;
 }
