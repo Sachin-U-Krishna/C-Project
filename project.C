@@ -12,7 +12,7 @@ void admin_login();
 //Global variables
 int stud_id, counter_for_book=5;
 int admin=0;
-char stud_name[20], stud_programme[20];
+char stud_name[20];
 int book_id[8] = {100,101,102,103,104};
 char name[8][20]={
                    "R D sharma",
@@ -36,14 +36,15 @@ void main(){
 	    
 	    switch(option){
 	    	case 1:
+	    		student_detail();
+	    		system("cls");
 	    		//Student Check-in code
 	    		while(option==1){
 	    			printf("-------- Student Menu --------\n\n");
-	    			printf("1  Add Student Details \n");
-				    printf("2. Display Student Detail  \n");
-				    printf("3. Display books \n");
-				    printf("4. Borrow a book \n");
-				    printf("5. Check-out \n\n");
+				    printf("1. Display Student Detail  \n");
+				    printf("2. Display books \n");
+				    printf("3. Borrow a book \n");
+				    printf("4. Check-out \n\n");
 				    printf("------------------------------\n");
 				    printf("Enter choice: ");
 				    scanf("%d",&choice);
@@ -51,21 +52,17 @@ void main(){
 				    {
 				        case 1: 
 				        	system("cls"); 
-							student_detail();
-				        	break;
-				        case 2: 
-				        	system("cls"); 
 							print_detail();
 				        	break;
-				        case 3:
+				        case 2:
 							system("cls"); 
 							print_book();
 				        	break;
-				        case 4: 
+				        case 3: 
 				        	system("cls"); 
 							borrow();
 				        	break;
-				        case 5:
+				        case 4:
 							system("cls"); 
 							option=0;
 				        	break;
@@ -131,23 +128,20 @@ void student_detail()
     scanf("%s",stud_name);
     printf("\nEnter Student ID: ");
     scanf("%d",&stud_id);
-    printf("\n Enter the programme Enrolled: ");
-    scanf("%s",stud_programme);
 }
 
 void print_detail()
 {
     printf(" Name - %s \n",stud_name);
-    printf(" Id - %d \n",stud_id);
-    printf(" Programme - %s \n", stud_programme);
+    printf(" Id - %d \n\n",stud_id);
 }
 
 void print_book()
 {
 	system("cls");
     int i;
-    for(i=0 ;i<counter_for_book ;i++)
-		printf("%d  %s\n",i, name[i]);
+    for(i=100 ;i<(counter_for_book+100) ;i++)
+		printf("%d  %s\n",i, name[i-100]);
 	printf("\n\n");
 }
 
@@ -159,14 +153,14 @@ void borrow()
 	printf("\nEnter the Id of the book: ");
     scanf("%d",&id);
     for(i = 100; i <= 109; i++){
-    	if(book_id[i-100] == i)
+    	if(book_id[i-100] == id)
     		flag = 1;
 	}
-	if(flag == 0){
-		printf("Incorrect Book ID. Please enter the correct book id\n");		
+	if(flag == 1){
+		printf( "You have successfully borrowed the book: %s\n\n",name[id-100]);
 	}
 	else{
-		printf( "You have successfully borrowed the book: %s\n\n",name[id-100]);
+		printf("Incorrect Book ID. Please enter the correct book id\n");
 	}
     
 }
