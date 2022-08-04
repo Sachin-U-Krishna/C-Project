@@ -183,4 +183,3 @@ void admin_login(){
 	if (result==0)
 		admin=1;
 }
- 
