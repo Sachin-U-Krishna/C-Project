@@ -23,7 +23,7 @@ char name[8][20]={
                  };
 // counter_for_book=5;
 
-void main(){
+int main(){
 	int choice,option;
 	printf("*************** Welcome to Christ Library ***************\n\n");
     while(1){
@@ -135,7 +135,7 @@ int admin_login(){
 	char password[6];
 	int result;
 	printf("Enter the password:\n");
-	scanf(" %s", &password);
+	scanf(" %s", password);
 	//printf(" %s", string);
 	//printf(" %s", password);
 	result = strcmp(pass,password);
