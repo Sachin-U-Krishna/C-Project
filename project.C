@@ -7,10 +7,13 @@ void print_detail();
 void print_book();
 void borrow();
 void add_book();
+void admin_login();
 
 //Global variables
 int stud_id, counter_for_book=5;
+int admin=0;
 char stud_name[20], stud_programme[20];
+int book_id[8] = {100,101,102,103,104};
 char name[8][20]={
                    "R D sharma",
                    "Rs agarwal",
@@ -47,15 +50,19 @@ void main(){
 				    switch(choice)
 				    {
 				        case 1: 
+				        	system("cls"); 
 							student_detail();
 				        	break;
 				        case 2: 
+				        	system("cls"); 
 							print_detail();
 				        	break;
-				        case 3: 
+				        case 3:
+							system("cls"); 
 							print_book();
 				        	break;
 				        case 4: 
+				        	system("cls"); 
 							borrow();
 				        	break;
 				        case 5:
@@ -66,11 +73,13 @@ void main(){
 							system("cls"); 
 							printf("\nInvalid choice.\n\n");
 				    }
-				} //end of srudent menu
+				} //end of student menu
 				break;
 			case 2:
 	    		//Admin Login code
-	    		while(option==2){
+	    		admin_login();
+	    		if(admin==1){
+	    			while(option==2){
 	    			printf("--------- Admin Menu ---------\n\n");
 	    			printf("1  Add Books \n");
 				    printf("2. Display books \n");
@@ -80,20 +89,28 @@ void main(){
 				    scanf("%d",&choice);
 				    switch(choice)
 				    {
-				        case 1: 
+				        case 1:
+				        	system("cls"); 
 							add_book();
 				        	break;
-				        case 2: 
+				        case 2:
+				        	system("cls"); 
 				        	print_book();
 				        	break;
 				        case 3:
+				        	admin=0;
 							system("cls"); 
 							option=0;
 				        	break;
 						default:
 							system("cls"); 
 							printf("\nInvalid choice.\n\n");
+						}
 					}
+				}
+	    		else{
+	    			system("cls"); 
+					printf("Oops! Incorrect Password.\n\n");
 				}
 				break;
 			case 3:
@@ -136,16 +153,39 @@ void print_book()
 
 void borrow()
 {
-	system("cls");
-    int id;
-    printf("\n Enter the Id of the book: ");
+	int flag = 0;
+    int id, i;
+    //printf("The number of books in the library is %d", strlen(name));
+	printf("\nEnter the Id of the book: ");
     scanf("%d",&id);
-    printf( " book is %s",name[id]);
+    for(i = 100; i <= 109; i++){
+    	if(book_id[i-100] == i)
+    		flag = 1;
+	}
+	if(flag == 0){
+		printf("Incorrect Book ID. Please enter the correct book id\n");		
+	}
+	else{
+		printf( "You have successfully borrowed the book: %s\n\n",name[id-100]);
+	}
+    
 }
 
 void add_book()
 {
     printf(" \n Enter the book you want to insert: ");
     scanf("%s",name[counter_for_book]);
+    book_id[counter_for_book] = 100 + counter_for_book;
     counter_for_book++;
+}
+
+void admin_login(){
+	char pass[6] = "admin";
+	char password[6];
+	int result;
+	printf("Enter the password: ");
+	scanf(" %s", &password);
+	result = strcmp(pass,password);
+	if (result==0)
+		admin=1;
 }
