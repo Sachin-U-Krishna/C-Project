@@ -1,3 +1,7 @@
+/*
+Library Management Sytem
+Student and Admin Menu
+*/
 #include<stdio.h>
 #include<stdlib.h>
 #include<strings.h>
@@ -9,6 +13,7 @@ void print_book();
 void borrow();
 void add_book();
 void admin_login();
+const char name_of_lib[] = "Welcome to Christ Library";
 
 //Global variables
 int stud_id, counter_for_book=5;
@@ -24,9 +29,9 @@ char name[8][20]={
                  };
 // counter_for_book=5;
 
-void main(){
+int main(){
 	int choice,option;
-	printf("*************** Welcome to Christ Library ***************\n\n");
+	printf("*************** %s ***************\n\n",name_of_lib);
     while(1){
     	printf("-------- Main Menu --------\n");
     	printf("\n1. Student Check-in\n2. Admin Login\n3. Exit Library\n\n");
@@ -125,6 +130,7 @@ void main(){
 				printf("\nInvalid option.\n");
 		} //end of outer switch
 	}
+	return 0;
 }
 
 //Function Definitions
