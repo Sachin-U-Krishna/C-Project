@@ -57,13 +57,14 @@ void main(){
 				        	break;
 				        case 2:
 							system("cls"); 
-							printf("Svailable books...\n\n");
+							printf("Available books...\n\n");
 							print_book();
 				        	break;
 				        case 3: 
 				        	system("cls");
 				        	printf("Which book do you want to borrow?\n\n");
 				        	print_book();
+				        	printf("------------------------------\n");
 							borrow();
 				        	break;
 				        case 4:
@@ -96,7 +97,7 @@ void main(){
 				        	break;
 				        case 2:
 				        	system("cls");
-							printf("Svailable books...\n\n"); 
+							printf("Available books...\n\n"); 
 				        	print_book();
 				        	break;
 				        case 3:
@@ -164,7 +165,7 @@ void borrow()
 	}
 	else{
 		system("cls");
-		printf("Incorrect Book ID. Please enter the correct book Id\n");
+		printf("Incorrect Book ID. Please enter the correct book Id\n\n");
 	}
     
 }
